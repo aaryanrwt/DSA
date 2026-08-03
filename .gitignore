@@ -1,0 +1,8 @@
+# Visual C++ / Windows build artifacts
+*.exe
+*.obj
+*.pdb
+*.ilk
+
+# VS Code settings
+.vscode/
