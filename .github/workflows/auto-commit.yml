@@ -1,0 +1,30 @@
+name: Auto Daily Commits
+
+on:
+  schedule:
+    - cron: '0 12 * * *' # Runs daily at 12:00 UTC
+  workflow_dispatch: # Allows you to manually trigger it from the GitHub Actions tab
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Git
+        run: |
+          git config --global user.name "Aaryan Rawat"
+          git config --global user.email "aaryan28rwt@gmail.com"
+
+      - name: Make 5 empty commits
+        run: |
+          for i in {1..5}
+          do
+            git commit --allow-empty -m "chore: auto daily contribution $i"
+          done
+
+      - name: Push commits
+        run: git push origin main
