@@ -21,9 +21,10 @@ jobs:
 
       - name: Make 5 empty commits
         run: |
+          export TZ="Asia/Kolkata"
           for i in {1..5}
           do
-            git commit --allow-empty -m "chore: auto daily contribution $i"
+            GIT_AUTHOR_DATE="$(date -R)" GIT_COMMITTER_DATE="$(date -R)" git commit --allow-empty -m "chore: auto daily contribution $i"
           done
 
       - name: Push commits
